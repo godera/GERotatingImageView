@@ -12,6 +12,7 @@
 
 @property (assign, nonatomic) CGFloat progress;
 @property (retain, nonatomic) UIImage* image;
+@property (nonatomic, assign, readonly) BOOL isAnimating;
 
 -(void)start;
 -(void)stop;

@@ -25,8 +25,11 @@
 {
     if (newWindow == nil) // at the moment the method like viewWillDisappear in view controller
     {
-        [self stop];
-        _canRestart = YES;
+        if (_isAnimating)
+        {
+            [self stop];
+            _canRestart = YES;
+        }
     }
     else // at the moment the method like viewWillAppear in view controller
     {
@@ -80,7 +83,7 @@
     
     self.hidden = NO;
     self.rotateTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(rotating:) userInfo:nil repeats:YES];
-
+    _isAnimating = YES;
 }
 
 -(void)stop
@@ -89,6 +92,7 @@
     if (_rotateTimer && [_rotateTimer isValid]) {
         [_rotateTimer invalidate];
     }
+    _isAnimating = NO;
 }
 
 @end
